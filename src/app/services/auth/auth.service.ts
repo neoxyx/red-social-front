@@ -42,9 +42,7 @@ export class AuthService {
   }
 
   private eliminarInformacionSesion() {
-    // Implementa la lógica para eliminar información de sesión según tu aplicación
-    // E.g., this.tokenService.eliminarToken();
-    // E.g., this.usuarioActual = null;
+    localStorage.removeItem('token');
   }
 
   editarInformacion() {
