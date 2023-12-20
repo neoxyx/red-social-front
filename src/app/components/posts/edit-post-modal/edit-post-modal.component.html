@@ -1,0 +1,20 @@
+<!-- edit-post-modal.component.html -->
+<div class="modal-header">
+    <h4 class="modal-title">Editar Post</h4>
+    <button type="button" class="close" aria-label="Cerrar" (click)="activeModal.dismiss('Descartar')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="editedContent">Contenido:</label>
+            <textarea id="editedContent" name="editedContent" [(ngModel)]="editedContent" class="form-control"
+                required></textarea>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar Cambios</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Descartar')">Descartar</button>
+</div>
