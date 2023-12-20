@@ -20,8 +20,8 @@ export class AuthService {
     return !!token; // Devuelve true si el token está presente, de lo contrario, false
   }
 
-  register(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/signup`, { username, password });
+  register(username: string, email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/signup`, { username, email, password });
   }
 
   login(credentials: { username: string; password: string }): Observable<{ token: string }> {

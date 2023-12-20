@@ -9,6 +9,11 @@
                     <input [(ngModel)]="registerUsername" name="registerUsername" class="form-control" required />
                 </div>
                 <div class="mb-3">
+                    <label for="registerEmail" class="form-label">Email:</label>
+                    <input type="email" [(ngModel)]="registerEmail" name="registerEmail" class="form-control"
+                        required />
+                </div>
+                <div class="mb-3">
                     <label for="registerPassword" class="form-label">Contraseña:</label>
                     <input [(ngModel)]="registerPassword" name="registerPassword" type="password" class="form-control"
                         required />

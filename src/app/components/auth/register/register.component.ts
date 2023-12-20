@@ -8,6 +8,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 })
 export class RegisterComponent {
   registerUsername = '';
+  registerEmail = '';
   registerPassword = '';
   registrationMessage: string = '';
   registrationSuccess: boolean = false;
@@ -15,7 +16,7 @@ export class RegisterComponent {
   constructor(private authService: AuthService) { }
 
   register() {
-    this.authService.register(this.registerUsername, this.registerPassword).subscribe(
+    this.authService.register(this.registerUsername, this.registerEmail, this.registerPassword).subscribe(
       () => {
         this.registrationSuccess = true;
         this.registrationMessage = 'Usuario registrado con éxito';

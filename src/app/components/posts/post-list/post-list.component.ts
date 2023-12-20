@@ -6,6 +6,13 @@ import { Router } from '@angular/router';
 import { EditPostModalComponent } from '../edit-post-modal/edit-post-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+interface Post {
+  id: number;
+  user: { username: string };
+  content: string;
+  createdAt: Date
+  // Agrega más propiedades según tu modelo de datos
+}
 
 @Component({
   selector: 'app-post-list',
@@ -13,7 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent implements OnInit {
-  posts: any[] = [];
+  posts: Post[] = [];
   selectedPost: any;
   terminoBusqueda: string = '';
 
@@ -41,7 +48,7 @@ export class PostListComponent implements OnInit {
 
   loadPosts() {
     this.postService.getPosts().subscribe(
-      (response) => {
+      (response: Post[]) => {
         this.posts = response;
       },
       (error) => {
@@ -102,7 +109,6 @@ export class PostListComponent implements OnInit {
   }
 
   filtrarPosts() {
-    console.log(this.posts);
     if (!this.terminoBusqueda) {
       // Si el término de búsqueda está vacío, muestra todos los posts
       this.loadPosts();
