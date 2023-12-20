@@ -10,7 +10,8 @@ import { JwtHelperService } from '@auth0/angular-jwt'; // Asegúrate de tener in
 })
 export class MenuLateralComponent implements OnInit {
   usuario: any; // Variable para almacenar la información del usuario
-
+  isCollapsed = false;
+  
   constructor(private authService: AuthService, private jwtHelper: JwtHelperService) { }
 
   ngOnInit() {
