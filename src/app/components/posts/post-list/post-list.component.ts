@@ -116,6 +116,6 @@ export class PostListComponent implements OnInit {
   }
 
   goToCreate() {
-    this.router.navigate(['/create-post']);
+    this.router.navigate(['/posts/create-post']);
   }
 }

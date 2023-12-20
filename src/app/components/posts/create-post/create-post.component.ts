@@ -26,4 +26,8 @@ export class CreatePostComponent {
       }
     );
   }
+
+  volver() {
+    this.router.navigate(['/posts/list-posts']);
+  }
 }
