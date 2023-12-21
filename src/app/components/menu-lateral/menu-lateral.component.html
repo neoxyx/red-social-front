@@ -1,11 +1,12 @@
 <!-- menu-lateral.component.html -->
 <div class="menu">
-    <div>
-        <h2>Usuario: {{ usuario }}</h2>
+    <div class="data-user">
+        <h3>Usuario: {{ user.user.username }}</h3>
+        <p>Email: {{ user.user.email }}</p>
     </div>
     <div class="opciones-menu">
         <button mat-raised-button color="primary"
-            (click)="editarInformacion()"><mat-icon>edit</mat-icon>Editar</button>&nbsp;
+            (click)="openEditUserModal()"><mat-icon>edit</mat-icon>Editar</button>&nbsp;
         <button mat-raised-button color="warn" (click)="cerrarSesion()"><mat-icon>logout</mat-icon>Salir</button>
     </div>
 </div>

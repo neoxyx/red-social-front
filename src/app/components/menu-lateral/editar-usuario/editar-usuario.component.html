@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title">Editar Datos del Usuario</h4>
+    <button type="button" class="close" aria-label="Cerrar" (click)="activeModal.dismiss('Descartar')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="editedUserName">Titulo:</label>
+            <input type="text" id="editedUserName" name="editedUserName" [(ngModel)]="editedUserName"
+                class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="editedEmail">Contenido:</label>
+            <input type="email" id="editedEmail" name="editedEmail" [(ngModel)]="editedEmail" class="form-control" />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar Cambios</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Descartar')">Descartar</button>
+</div>

@@ -36,6 +36,21 @@ export class AuthService {
       );
   }
 
+  getUserInfo(): any {
+    const token = this.getToken();
+
+    if (token) {
+      // Decodifica el token para obtener los detalles del usuario
+      const payload = token.split('.')[1];
+      const decodedPayload = atob(payload);
+      const user = JSON.parse(decodedPayload);
+      console.log(user);
+      return user;
+    }
+
+    return null;
+  }
+
   cerrarSesion() {
     // Elimina cualquier información de sesión (token, usuario actual, etc.)
     this.eliminarInformacionSesion();
