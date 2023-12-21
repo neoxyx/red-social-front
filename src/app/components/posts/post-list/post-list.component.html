@@ -13,6 +13,13 @@
             <h4>{{ post.title }}</h4>
             <p>{{ post.content }}</p>
             <p class="date">Fecha: {{ post.date | date }}</p>
+            <div>
+                <!-- Muestra la cantidad de likes -->
+                <p>Likes: {{ post.likes }}</p>
+
+                <!-- Agrega un botón o enlace para dar like -->
+                <button mat-button color="primary" (click)="likePost(post._id)"><mat-icon>thumb_up</mat-icon></button>
+            </div>
             <!-- Mostrar el botón solo para los posts del propio usuario -->
             <div class="menu"><button class="btn btn-primary" *ngIf="isOwnPost(post)"
                     (click)="openOptions(post)">Opciones</button>

@@ -46,6 +46,7 @@ export class PostListComponent implements OnInit {
     this.postService.getPosts().subscribe(
       (response: Post[]) => {
         this.posts = response;
+        console.log(this.posts);
       },
       (error) => {
         console.error('Error al obtener la lista de posts:', error);
@@ -96,6 +97,21 @@ export class PostListComponent implements OnInit {
     }
   }
 
+  likePost(postId: string): void {
+    this.postService.likePost(postId).subscribe(
+      (response) => {
+        // Actualiza la lista de posts después de dar like
+        const updatedPostIndex = this.posts.findIndex((post) => post._id === postId);
+        if (updatedPostIndex !== -1) {
+          this.posts[updatedPostIndex] = response.updatedPost;
+        }
+      },
+      (error) => {
+        console.error('Error liking post', error);
+      }
+    );
+  }
+
   isOwnPost(post: any): boolean {
     // Obtén el ID del usuario actual desde el servicio de autenticación
     const currentUserId = this.obtenerIdUsuarioDesdeToken();
@@ -111,6 +127,7 @@ export class PostListComponent implements OnInit {
     } else {
       // Filtra los posts basándose en el término de búsqueda
       this.posts = this.posts.filter((post) =>
+        post.title.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
         post.content.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
         post.user.username.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
       );

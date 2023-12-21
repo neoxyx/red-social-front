@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 import { AuthService } from '../auth/auth.service';
+import { Post } from 'src/app/models/post';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class PostService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  getPosts(): Observable<any[]> {
+  getPosts(): Observable<Post[]> {
     const token = this.authService.getToken();
 
     // Verificar si el token está presente antes de agregarlo a los encabezados
@@ -49,5 +50,14 @@ export class PostService {
       ? new HttpHeaders({ 'x-auth-token': token })
       : new HttpHeaders();
     return this.http.delete(`${this.apiUrl}/api/posts/${postId}`, { headers });
+  }
+
+  likePost(postId: string): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = token
+      ? new HttpHeaders({ 'x-auth-token': token })
+      : new HttpHeaders();
+
+    return this.http.post(`${this.apiUrl}/api/posts/${postId}/like`, {}, { headers });
   }
 }

@@ -1,14 +1,16 @@
 export interface Post {
-    id: string;
+    _id: string;
     user: User;
     title: string;
     content: string;
     date: Date
+    likes: number;
+    likedBy: string[];
     // Agrega más propiedades según tu modelo de datos
 }
 
 export interface User {
-    id: number;
+    _id: number;
     username: string;
     password: string;
     email: string;
