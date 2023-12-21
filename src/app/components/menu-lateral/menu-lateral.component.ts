@@ -17,11 +17,16 @@ import { User } from 'src/app/models/post';
 export class MenuLateralComponent implements OnInit {
   user: any; // Variable para almacenar la información del usuario
   isCollapsed = false;
+  message: string = '';
 
   constructor(private authService: AuthService, private modalService: NgbModal, public dialog: MatDialog, private jwtHelper: JwtHelperService, private router: Router) { }
 
   ngOnInit() {
     // Obtener información del usuario al iniciar el componente
+    this.getInfoUser();
+  }
+
+  getInfoUser() {
     this.user = this.authService.getUserInfo();
   }
 
@@ -36,7 +41,7 @@ export class MenuLateralComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         console.log('Modal cerrado con éxito', result);
-        this.user = this.authService.getUserInfo();
+        this.message = 'Debes iniciar sesión de nuevo.';
       },
       (reason) => {
         console.log('Modal cerrado con descarte', reason);

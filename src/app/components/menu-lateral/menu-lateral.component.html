@@ -9,4 +9,10 @@
             (click)="openEditUserModal()"><mat-icon>edit</mat-icon>Editar</button>&nbsp;
         <button mat-raised-button color="warn" (click)="cerrarSesion()"><mat-icon>logout</mat-icon>Salir</button>
     </div>
+    <!-- Mensaje de éxito o error -->
+    <div class="mt-3">
+        <div class="data-user" role="alert">
+            {{ message }}
+        </div>
+    </div>
 </div>
