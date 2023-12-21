@@ -3,23 +3,21 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2>Registro</h2>
-            <form (submit)="register()">
+            <form [formGroup]="registrationForm" (ngSubmit)="register()">
                 <div class="mb-3">
                     <label for="registerUsername" class="form-label">Usuario:</label>
-                    <input [(ngModel)]="registerUsername" name="registerUsername" class="form-control" required />
+                    <input type="text" id="username" formControlName="username" class="form-control" required />
                 </div>
                 <div class="mb-3">
                     <label for="registerEmail" class="form-label">Email:</label>
-                    <input type="email" [(ngModel)]="registerEmail" name="registerEmail" class="form-control"
-                        required />
+                    <input type="email" id="email" formControlName="email" class="form-control" required />
                 </div>
                 <div class="mb-3">
                     <label for="registerPassword" class="form-label">Contraseña:</label>
-                    <input [(ngModel)]="registerPassword" name="registerPassword" type="password" class="form-control"
-                        required />
+                    <input type="password" id="password" formControlName="password" class="form-control" required />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" [disabled]="!registrationForm.valid" class="btn btn-primary">Registrar</button>
             </form>
 
             <!-- Mensaje de éxito o error -->

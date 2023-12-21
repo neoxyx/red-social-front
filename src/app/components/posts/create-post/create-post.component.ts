@@ -1,7 +1,10 @@
 // create-post.component.ts
 import { Component } from '@angular/core';
 import { PostService } from 'src/app/services/posts/post.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-create-post',
@@ -9,22 +12,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent {
-  content: string = '';
+  postForm: FormGroup;
 
-  constructor(private postService: PostService, private router: Router) { }
+
+
+  constructor(private fb: FormBuilder, private postService: PostService, private router: Router) {
+    this.postForm = this.fb.group({
+      title: ['', [Validators.required]],
+      content: ['', [Validators.required]],
+    });
+  }
 
   createPost() {
-    this.postService.createPost(this.content).subscribe(
-      () => {
-        console.log('post creado');
-        // Éxito al crear el post, redirige al usuario a la vista de posts
-        this.router.navigate(['/posts/list-posts']);
-      },
-      error => {
-        console.error('Error al crear el post', error);
-        // Manejar errores según sea necesario
-      }
-    );
+    if (this.postForm.valid) {
+      const postData = this.postForm.value;
+      this.postService.createPost(postData).subscribe(
+        (response) => {
+          // Manejar la respuesta exitosa, redirección, etc.
+          console.log('Post creado exitosamente', response);
+          this.router.navigate(['/posts/list-posts']);
+        },
+        (error) => {
+          // Manejar errores, por ejemplo, mostrar un mensaje al usuario
+          console.error('Error al crear el post', error);
+        }
+      );
+    }
   }
 
   volver() {

@@ -3,18 +3,17 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2>Login</h2>
-            <form (submit)="login()">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
                 <div class="mb-3">
-                    <label for="loginUsername" class="form-label">Usuario:</label>
-                    <input [(ngModel)]="credentials.username" name="loginUsername" class="form-control" required />
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" formControlName="email" class="form-control" required />
                 </div>
                 <div class="mb-3">
-                    <label for="loginPassword" class="form-label">Contraseña:</label>
-                    <input [(ngModel)]="credentials.password" name="loginPassword" type="password" class="form-control"
-                        required />
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" id="password" formControlName="password" class="form-control" required />
                 </div>
 
-                <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Iniciar sesión</button>
             </form>
 
             <!-- Mensaje de éxito o error -->

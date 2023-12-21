@@ -1,18 +1,14 @@
 // post-list.component.ts
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/posts/post.service';
 import { JwtHelperService } from '@auth0/angular-jwt'; // Asegúrate de tener instalada esta librería
 import { Router } from '@angular/router';
 import { EditPostModalComponent } from '../edit-post-modal/edit-post-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-interface Post {
-  id: number;
-  user: { username: string };
-  content: string;
-  createdAt: Date
-  // Agrega más propiedades según tu modelo de datos
-}
+const ELEMENT_DATA: Post[] = [];
+
 
 @Component({
   selector: 'app-post-list',
@@ -20,7 +16,7 @@ interface Post {
   styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent implements OnInit {
-  posts: Post[] = [];
+  posts = ELEMENT_DATA;
   selectedPost: any;
   terminoBusqueda: string = '';
 
@@ -36,7 +32,7 @@ export class PostListComponent implements OnInit {
     if (token) {
       try {
         const decodedToken = this.jwtHelper.decodeToken(token);
-        return decodedToken.userId;
+        return decodedToken.user.id;
       } catch (error) {
         console.error('Error al decodificar el token:', error);
         return null;
@@ -105,7 +101,7 @@ export class PostListComponent implements OnInit {
     const currentUserId = this.obtenerIdUsuarioDesdeToken();
 
     // Verifica si el post pertenece al usuario actual
-    return currentUserId !== null && post.userId === currentUserId;
+    return currentUserId !== null && post.user._id === currentUserId;
   }
 
   filtrarPosts() {

@@ -11,24 +11,27 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private apiUrl = environment.urlBase;
+  private tokenKey = 'token'; // Clave para almacenar el token en el almacenamiento local
 
   constructor(private http: HttpClient, private router: Router) { }
 
   isLoggedIn(): boolean {
-    // Implementa la lógica para verificar si el usuario está autenticado
-    const token = localStorage.getItem('token');
-    return !!token; // Devuelve true si el token está presente, de lo contrario, false
+    // Verifica si el token está presente en el almacenamiento local
+    return !!localStorage.getItem(this.tokenKey);
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/signup`, { username, email, password });
+  register(userData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/signup`, userData);
   }
 
-  login(credentials: { username: string; password: string }): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, credentials)
+  login(loginData: any): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, loginData)
       .pipe(
-        tap(response => {
-          localStorage.setItem('token', response.token);
+        tap((response: any) => {
+          if (response.token) {
+            // Almacena el token en el almacenamiento local
+            localStorage.setItem(this.tokenKey, response.token);
+          }
         })
       );
   }
@@ -42,7 +45,13 @@ export class AuthService {
   }
 
   private eliminarInformacionSesion() {
-    localStorage.removeItem('token');
+    // Elimina el token del almacenamiento local al cerrar sesión
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  getToken(): string | null {
+    // Obtiene el token del almacenamiento local
+    return localStorage.getItem(this.tokenKey);
   }
 
   editarInformacion() {

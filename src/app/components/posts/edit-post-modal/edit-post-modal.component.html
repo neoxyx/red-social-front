@@ -8,6 +8,11 @@
 <div class="modal-body">
     <form>
         <div class="form-group">
+            <label for="editedTitle">Titulo:</label>
+            <input type="text" id="editedTitle" name="editedTitle" [(ngModel)]="editedTitle" class="form-control"
+                required />
+        </div>
+        <div class="form-group">
             <label for="editedContent">Contenido:</label>
             <textarea id="editedContent" name="editedContent" [(ngModel)]="editedContent" class="form-control"
                 required></textarea>

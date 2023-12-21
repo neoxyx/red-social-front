@@ -10,17 +10,21 @@ import { PostService } from 'src/app/services/posts/post.service';
 })
 export class EditPostModalComponent {
   @Input() post: any;
+
+  editedTitle: string = '';
   editedContent: string = '';
 
   constructor(public activeModal: NgbActiveModal, private postService: PostService) { }
 
   ngOnInit() {
     // Inicializar los campos del formulario con los datos actuales del post    
+    this.editedTitle = this.post.title;
     this.editedContent = this.post.content;
   }
 
   saveChanges() {
     const editedPostData = {
+      title: this.editedTitle,
       content: this.editedContent,
     };
 

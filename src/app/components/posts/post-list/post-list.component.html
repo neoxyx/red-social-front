@@ -9,9 +9,10 @@
     </div><br>
     <ul class="list-group">
         <li *ngFor="let post of posts" class="list-group-item">
-            <h5>{{ post.user.username }}</h5>
+            <h3>{{ post.user.username }}</h3>
+            <h4>{{ post.title }}</h4>
             <p>{{ post.content }}</p>
-            <p class="date">Fecha: {{ post.createdAt | date }}</p>
+            <p class="date">Fecha: {{ post.date | date }}</p>
             <!-- Mostrar el botón solo para los posts del propio usuario -->
             <div class="menu"><button class="btn btn-primary" *ngIf="isOwnPost(post)"
                     (click)="openOptions(post)">Opciones</button>
