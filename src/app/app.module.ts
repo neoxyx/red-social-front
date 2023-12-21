@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//Material
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,9 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot([])
+    MaterialModule,
+    RouterModule.forRoot([]),
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })

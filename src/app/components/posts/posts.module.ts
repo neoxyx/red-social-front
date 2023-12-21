@@ -8,6 +8,7 @@ import { EditPostModalComponent } from './edit-post-modal/edit-post-modal.compon
 import { PostsRoutingModule } from './posts-routing.module';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { MenuLateralModule } from '../menu-lateral/menu-lateral.module';
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MenuLateralModule } from '../menu-lateral/menu-lateral.module';
     ReactiveFormsModule,
     FormsModule,
     PostsRoutingModule,
-    MenuLateralModule
+    MenuLateralModule,
+    MaterialModule
   ],
   providers: [
     // ...

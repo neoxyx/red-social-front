@@ -1,4 +1,19 @@
-<div>
-    <router-outlet>
-    </router-outlet>
-</div>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
+        <!-- Contenido del menú lateral -->
+        <app-menu-lateral></app-menu-lateral>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="row contentMain">
+                <div>
+                    <div class="main">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

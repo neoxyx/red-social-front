@@ -1,19 +1,11 @@
 <!-- menu-lateral.component.html -->
-<p class="menu">
-    <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()" [attr.aria-expanded]="isCollapsed"
-        aria-controls="collapseExample">Menu
-    </button>
-</p>
-<div style="min-height: 100px" class="menu">
-    <div #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed" [horizontal]="true" style="max-width: 300px">
-        <div class="card" style="width: 300px">
-            <div class="info-usuario">
-                <h2>Usuario: {{ usuario }}</h2>
-            </div>
-            <div class="opciones-menu">
-                <button class="btn btn-danger" (click)="cerrarSesion()">Cerrar Sesión</button>&nbsp;
-                <button class="btn btn-primary" (click)="editarInformacion()">Editar Información</button>
-            </div>
-        </div>
+<div class="menu">
+    <div>
+        <h2>Usuario: {{ usuario }}</h2>
+    </div>
+    <div class="opciones-menu">
+        <button mat-raised-button color="primary"
+            (click)="editarInformacion()"><mat-icon>edit</mat-icon>Editar</button>&nbsp;
+        <button mat-raised-button color="warn" (click)="cerrarSesion()"><mat-icon>logout</mat-icon>Salir</button>
     </div>
 </div>

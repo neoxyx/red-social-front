@@ -1,5 +1,6 @@
 // menu-lateral.component.ts
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt'; // Asegúrate de tener instalada esta librería
 
@@ -11,8 +12,8 @@ import { JwtHelperService } from '@auth0/angular-jwt'; // Asegúrate de tener in
 export class MenuLateralComponent implements OnInit {
   usuario: any; // Variable para almacenar la información del usuario
   isCollapsed = false;
-  
-  constructor(private authService: AuthService, private jwtHelper: JwtHelperService) { }
+
+  constructor(private authService: AuthService, private jwtHelper: JwtHelperService, private router: Router) { }
 
   ngOnInit() {
     // Obtener información del usuario al iniciar el componente
@@ -43,8 +44,9 @@ export class MenuLateralComponent implements OnInit {
   }
 
   editarInformacion() {
+    this.router.navigate(['/usuario/editar']);
     // Llamar al método de editar información en el servicio de autenticación
-    this.authService.editarInformacion();
+    //this.authService.editarInformacion();
   }
 
   cerrarSesion() {

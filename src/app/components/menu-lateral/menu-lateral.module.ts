@@ -4,6 +4,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { MenuLateralComponent } from './menu-lateral.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    MaterialModule
   ],
   exports: [MenuLateralComponent],
   providers: [
