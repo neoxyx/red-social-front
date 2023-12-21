@@ -44,6 +44,10 @@ export class PostService {
   }
 
   deletePost(postId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/api/posts/${postId}`);
+    const token = this.authService.getToken();
+    const headers = token
+      ? new HttpHeaders({ 'x-auth-token': token })
+      : new HttpHeaders();
+    return this.http.delete(`${this.apiUrl}/api/posts/${postId}`, { headers });
   }
 }
